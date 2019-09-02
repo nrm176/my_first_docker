@@ -1,6 +1,14 @@
 version: '3.5'
 
 services:
+  python3:
+    restart: always
+    build: .
+    container_name: 'python3'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - ./opt:/root/opt
   postgres:
     container_name: postgres_docker_container
     image: postgres
