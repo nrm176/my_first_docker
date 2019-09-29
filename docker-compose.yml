@@ -9,6 +9,8 @@ services:
     tty: true
     volumes:
       - ./opt:/root/opt
+    networks:
+      - postgres
   postgres:
     container_name: postgres_docker_container
     image: postgres
@@ -16,7 +18,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-root}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
     volumes:
-       - devdb:/var/lib/postgresql/data
+       - ./devdb:/var/lib/postgresql/data
        - ./initialize:/docker-entrypoint-initdb.d
        - /etc/localtime:/etc/localtime:ro
     ports:
